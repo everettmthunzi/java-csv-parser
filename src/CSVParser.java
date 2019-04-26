@@ -3,9 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.Conversion;
-import org.apache.commons.lang3.math.NumberUtils;
-
 import static org.apache.commons.lang3.math.NumberUtils.isParsable;
 
 /**
@@ -28,7 +25,7 @@ class CSVParser{
 
     private static List<Rating> readCSV(String fileName) {
 
-        // initializing readCSV variables
+        // initializing variables
         String line = null;
         BufferedReader reader = null;
 
@@ -56,7 +53,6 @@ class CSVParser{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return ratings;
     }
 
@@ -66,18 +62,23 @@ class CSVParser{
         String review = metadata[1];
         int stars = parseValue(metadata[2]);
 
-        // creating and returning a rating with these attributes
+        // creating and returning a rating object
+        // with the attributes: styleID, review, stars
         return new Rating(styleID, review, stars);
     }
 
+    /**
+     * Checking if the strings: styleID and stars
+     *              are numeric With Apache Commons Lang.
+     *
+     *  ... avoiding blindly parsing all strings
+     */
     private static int parseValue(String string){
         int value = 0;
         if (isParsable(string))
             value = Integer.parseInt(string);
         return value;
     }
-
-
 }
 
 class Rating {
