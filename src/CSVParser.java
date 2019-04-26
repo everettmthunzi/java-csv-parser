@@ -14,7 +14,9 @@ import static org.apache.commons.lang3.math.NumberUtils.isParsable;
 class CSVParser{
 
     public static void main(String[] args){
-        List<Rating> ratings = readCSV("/Users/everett/Desktop/csv-parser/src/data.csv");
+
+        // todo: absolute path to point to .csv file
+        List<Rating> ratings = readCSV("data.csv");
 
         // displaying ratings read from the .csv file
         for (Rating r: ratings){
@@ -69,7 +71,7 @@ class CSVParser{
 
     /**
      * Checking if the strings: styleID and stars
-     *              are numeric With Apache Commons Lang.
+     *              are numeric with -- Apache Commons Lang.
      *
      *  ... avoiding blindly parsing all strings
      */
